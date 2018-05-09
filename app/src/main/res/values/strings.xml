@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListagemApp</string>
+    <string name="Edt_Adiciona"></string>
+    <string name="Btn_Adiciona">Adiciona</string>
+</resources>
