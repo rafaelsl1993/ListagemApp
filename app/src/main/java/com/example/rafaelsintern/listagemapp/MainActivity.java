@@ -2,39 +2,67 @@ package com.example.rafaelsintern.listagemapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView listView;
-    private EditText EdtAdiciona;
-    private ArrayList<String> lista = new ArrayList<>();
+    private EditText EdtSummary;
+    private EditText EdtValue;
+    private ArrayList<Moviment> list = new ArrayList<Moviment>();
+    private RecyclerView mRecycler;
+    private MyViewAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_main);
 
-        listView = (ListView) findViewById(R.id.EdtList);
-        EdtAdiciona = (EditText) findViewById(R.id.EdtAdiciona);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecycler = findViewById(R.id.RList);
+        EdtSummary = (EditText) findViewById(R.id.EdtSummary);
+        EdtValue = (EditText) findViewById(R.id.EdtValue);
+        mRecycler.setLayoutManager(mLayoutManager);
+
+
 
     }
 
-    private ArrayAdapter<String> adapt = null;
 
     public void funcAdiciona(View view){
+        Moviment mov = new Moviment(EdtSummary.getText().toString(), Float.parseFloat(EdtValue.getText().toString()));
+        list.add(mov);
 
-        lista.add(EdtAdiciona.getText().toString());                                //capturar valor EdtAdiciona
-        adapt = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, lista);  //Adapta ArrayList para Listar
+        mAdapter = new MyViewAdapter(list);
+        mRecycler.setAdapter(mAdapter);
 
-        listView.setAdapter(adapt);                    //Listar valor capturado
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

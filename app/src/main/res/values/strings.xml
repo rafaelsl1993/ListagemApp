@@ -2,4 +2,6 @@
     <string name="app_name">ListagemApp</string>
     <string name="Edt_Adiciona"></string>
     <string name="Btn_Adiciona">Adiciona</string>
+    <string name="Text1"></string>
+    <string name="Text2"></string>
 </resources>
