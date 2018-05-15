@@ -1,17 +1,19 @@
 package com.example.rafaelsintern.listagemapp;
 
-public class Moviment {
-    private String summary;
+import java.io.Serializable;
+
+public class Moviment implements Serializable { //Para que não ocorra erros com a onSaveInstanceState, é necessário que a classe Moviments implemente a Serializablea
+    private String summary;                     //Pois é o modo que estou salvando a List no momento que ocorre alguma mudança no Lifecicle da Activity
     private float value;
-    private int ca;
+    private boolean ca;                 //True, valor positivo          False, valor negativo           Usado para identificar e deixar o valor Verde ou Vermelho
 
     public Moviment(String summ, float v) {
         this.summary = summ;
         this.value = v;
         if(v>=0)
-            ca = 1;
+            ca = true;
         else
-            ca = 0;
+            ca = false;
     }
 
     public String getSummary() {
@@ -22,7 +24,7 @@ public class Moviment {
         return value;
     }
 
-    public int getCA(){
+    public boolean getCA(){
         return ca;
     }
 }

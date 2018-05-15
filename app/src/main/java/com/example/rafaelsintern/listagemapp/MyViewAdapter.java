@@ -25,7 +25,7 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.MyViewHold
         }
     }
 
-    public MyViewAdapter(ArrayList<Moviment> list){
+    public MyViewAdapter(ArrayList<Moviment> list){     //Construtor de MyViewAdapter para receber a List
         this.list = list;
     }
 
@@ -38,8 +38,7 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.MyViewHold
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position){
         holder.description.setText(list.get(position).getSummary());
-        EditText v;
-        if(list.get(position).getValue()>=0) {
+        if(list.get(position).getCA()) {
             holder.value.setText((Float.toString(list.get(position).getValue())));
             holder.value.setTextColor(Color.parseColor("#00FF00"));
         }
