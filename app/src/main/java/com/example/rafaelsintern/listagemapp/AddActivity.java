@@ -1,19 +1,16 @@
 package com.example.rafaelsintern.listagemapp;
 
-
-        import android.content.Intent;
-
-
-        import android.os.Bundle;
-        import android.support.v7.app.ActionBar;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.EditText;
-
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.EditText;
+/*
+    Activity para adicionar itens na lista
+ */
 public class AddActivity extends AppCompatActivity {
     private EditText EdtSummary;
     private EditText EdtValue;
-    private Intent intent;
     private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,17 +25,16 @@ public class AddActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        // Display custom title
+        // Customizar titulo do menu
         actionBar = this.getSupportActionBar();
-        actionBar.setTitle("TITULO");
+        actionBar.setTitle("Adicionar");
 
-        // Display the back arrow
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Seta de voltar para a tela anterior
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
 
-    // Back arrow click event to go to the parent Activity
+    // Evento para voltar para a parent(tela anterior)
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
