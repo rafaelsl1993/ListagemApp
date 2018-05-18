@@ -11,6 +11,7 @@ import android.widget.EditText;
 public class AddActivity extends AppCompatActivity {
     private EditText EdtSummary;
     private EditText EdtValue;
+    private EditText EdtDate;
     private ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class AddActivity extends AppCompatActivity {
 
         EdtSummary = (EditText) findViewById(R.id.EdtSummary);
         EdtValue = (EditText) findViewById(R.id.EdtValue);
+        EdtDate =(EditText) findViewById(R.id.EdtData);
     }
 
     @Override
@@ -42,12 +44,12 @@ public class AddActivity extends AppCompatActivity {
     }
 
     public void funcAdiciona(View view){            //Função invocada quando o botão é clicado, captura os valores das TextEdits e armazena no vetor
-        Moviment mov = new Moviment(EdtSummary.getText().toString(), Float.parseFloat(EdtValue.getText().toString()));
+        Moviment mov = new Moviment(EdtSummary.getText().toString(), Float.parseFloat(EdtValue.getText().toString()), EdtDate.getText().toString());
         //intent.getParcelableArrayListExtra("list");
 
         MainActivity mainActivity = (MainActivity) getParent();
         mainActivity.listAdd(mov);
-
+        //Toast.makeText(getApplicationContext(), resultado, Toast.LENGTH_LONG).show();
     }
 
 }
