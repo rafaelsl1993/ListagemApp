@@ -33,9 +33,13 @@ public class ControllerBanco {
 
     public Cursor listar(String condition){
         db = banco.getReadableDatabase();
-
-        Cursor cursor = db.query("carteiraEletronica",new String[]{ "description","value","date"} ,condition,null,null,null,null);
-
+        Cursor cursor;
+        if(condition!="") {
+             cursor = db.query("carteiraEletronica", new String[]{"description", "value", "date"}, condition, null, null, null, null);
+        }
+        else {
+            cursor = db.query("carteiraEletronica", new String[]{"description", "value", "date"}, null, null, null, null, null);
+        }
         db.close();
 
         return cursor;
