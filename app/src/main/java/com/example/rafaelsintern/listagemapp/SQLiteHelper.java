@@ -11,17 +11,21 @@ public class SQLiteHelper extends SQLiteOpenHelper{
     private static final String ID = "_id";
     private static final String DESCRIPTION = "description";
     private static final String VALUE = "value";
-    private static final String DATE = "date";
+    private static final String MONTH = "month";
+    private static final String YEAR = "year";
+    private static final String DAY = "day";
     private static final int VERSION = 1;
 
     public SQLiteHelper(Context context) {
         super(context, DATA_NAME, null, VERSION);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql ="CREATE TABLE " + TABLE + " (" + ID + " integer primary key autoincrement, " +
-                DESCRIPTION + " text not null, " + VALUE + " money not null, " + DATE + " date not null" + ")";
+                DESCRIPTION + " integer, " + VALUE + " float not null, " + YEAR + " float not null, " + MONTH + " float, " +
+                DAY + " float not null" + ")";
         db.execSQL(sql);
     }
 

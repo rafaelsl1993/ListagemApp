@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <dimen name="generalRightLeft">70dp</dimen>
+    <dimen name="generalTop">20dp</dimen>
+    <dimen name="generalMiddleView">20dp</dimen>
+    <dimen name="textSize">20dp</dimen>
+    <dimen name="generalWidth">250dp</dimen>
+    <dimen name="generalHeight">43dp</dimen>
+    <dimen name="generalCornerRadius">5dp</dimen>
+
+    <dimen name="cardHeight">18dp</dimen>
+    <dimen name="cardWidth">75dp</dimen>
+    <dimen name="cardGeneralTop">6dp</dimen>
+    <dimen name="cardGeneralOutside">5dp</dimen>
+    <dimen name="CardPadding">8dp</dimen>
+    <dimen name="CardElevation">5dp</dimen>
+    <dimen name="cardTextSize">14dp</dimen>
+</resources>

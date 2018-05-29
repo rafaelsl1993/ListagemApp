@@ -1,0 +1,24 @@
+<resources>
+    <string name="Edt_Adiciona"> </string>
+    <string name="Btn_Adiciona" translatable="true">Adicionar</string>
+    <string name="Btn_Deletar" translatable="true">Deletar</string>
+    <string name="Text1" translatable="true"></string>
+    <string name="Text2" translatable="true"></string>
+    <string name="Value" translatable="true">Valor</string>
+    <string name="Date" translatable="true">Data</string>
+    <string name="Description" translatable="true">Descrição</string>
+    <string name="Calendario" translatable="true">Calendario</string>
+    <string name="Btn_Edit" translatable="true">Editar Valores</string>
+    <string-array name="mySpinner" translatable="true">
+        <item>Salario</item>
+        <item>Gasolina</item>
+        <item>Compras</item>
+        <item>Vestuario</item>
+        <item>Sogra</item>
+        <item>Contas</item>
+        <item>Saúde</item>
+        <item>Lazer</item>
+        <item>Poupança</item>
+    </string-array>
+    <string name="menu_message">Conta Eletrônica</string>
+</resources>

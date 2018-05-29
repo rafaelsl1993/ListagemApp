@@ -1,8 +1,24 @@
 <resources>
-    <string name="app_name">Carteira Eletronica</string>
     <string name="Edt_Adiciona"> </string>
-    <string name="Btn_Adiciona">Adiciona</string>
-    <string name="Text1"></string>
-    <string name="Text2"></string>
-    <string name="menu_message">APPListagem</string>
+    <string name="Btn_Adiciona" translatable="true">Add</string>
+    <string name="Btn_Deletar" translatable="true">Delete</string>
+    <string name="Text1" translatable="true"></string>
+    <string name="Text2" translatable="true"></string>
+    <string name="Value" translatable="true">Value</string>
+    <string name="Date" translatable="true">Date</string>
+    <string name="Description" translatable="true">Description</string>
+    <string name="Calendario" translatable="true">Calendar</string>
+    <string name="Btn_Edit" translatable="true">Edit Values</string>
+    <string-array name="mySpinner" translatable="true">
+        <item>Payday</item>
+        <item>Gas</item>
+        <item>Shopping</item>
+        <item>Cloths</item>
+        <item>Mother's...</item>
+        <item>Accounts</item>
+        <item>Health</item>
+        <item>Trip</item>
+        <item>Savings</item>
+    </string-array>
+    <string name="menu_message">Electronic Account</string>
 </resources>

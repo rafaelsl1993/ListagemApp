@@ -1,58 +1,103 @@
 package com.example.rafaelsintern.listagemapp;
 
+import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.content.ContentValues;
-import android.content.Context;
+import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-public class ControllerBanco {
-    private SQLiteDatabase db;
+public class BancoProvider extends ContentProvider{
     private SQLiteHelper banco;
+    private SQLiteDatabase db;
+    static final String PROVIDER_NAME = "com.example.rafaelsintern.listagemapp.BancoProvider";
+    static final String URL = "content://" + PROVIDER_NAME + "/carteiraEletronica";
+    static final Uri CONTENT_URI = Uri.parse(URL);
 
-    public ControllerBanco(Context context){
-        banco = new SQLiteHelper(context);
+    private static final int DESCRIPTION = 100;
+    private static final int VALUE = 101;
+    private static final int _ID = 103;
+    private static final int DAY = 106;
+    private static final int MONTH = 105;
+    private static final int YEAR = 104;
+
+    private static final UriMatcher mMatcher =new UriMatcher(UriMatcher.NO_MATCH);
+
+    static{
+        mMatcher.addURI(PROVIDER_NAME,"/carteiraEletronica/description",DESCRIPTION);
+        mMatcher.addURI(PROVIDER_NAME,"/carteiraEletronica/value",VALUE);
+        mMatcher.addURI(PROVIDER_NAME,"/carteiraEletronica/year",YEAR);
+        mMatcher.addURI(PROVIDER_NAME,"/carteiraEletronica/month",MONTH);
+        mMatcher.addURI(PROVIDER_NAME,"/carteiraEletronica/day",DAY);
+        mMatcher.addURI(PROVIDER_NAME,"/carteiraEletronica/#id",_ID);
     }
 
-    public String add(Moviment mov){
-        db = banco.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put("description", mov.getSummary());
-        values.put("value", mov.getValue());
-        values.put("date", mov.getDate().toString());
-
-        long txt = db.insert("carteiraEletronica", null, values);
-
-        db.close();
-
-        if(txt>0){
-            return "Sucesso";
-        }
-        return "Erro...";
+    @Override
+    public boolean onCreate() {
+        banco = new SQLiteHelper(getContext());
+        return true;
     }
 
-    public Cursor listar(String condition){
+    @Nullable
+    @Override
+    public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         db = banco.getReadableDatabase();
+        int opc = mMatcher.match(uri);
         Cursor cursor;
-        if(condition!="") {
-             cursor = db.query("carteiraEletronica", new String[]{"description", "value", "date"}, condition, null, null, null, null);
-        }
-        else {
-            cursor = db.query("carteiraEletronica", new String[]{"description", "value", "date"}, null, null, null, null, null);
-        }
-        db.close();
 
+        cursor = db.query("carteiraEletronica", projection, selection, selectionArgs, null, null, sortOrder);
+
+        cursor.setNotificationUri(getContext().getContentResolver(),uri);
         return cursor;
     }
 
-    public void deleta(Moviment mov){
+    @Nullable
+    @Override
+    public String getType(@NonNull Uri uri) {
+        //NÃO ESTÁ IMPLEMENTADO
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
         db = banco.getWritableDatabase();
 
-        String value ="description = " + mov.getSummary() + " AND value = " + mov.getValue() + " AND date = " + mov.getDate();
+        Uri uriReturn;
 
-        db.delete("carteiraEletronica", value, null);
+        long id;
 
+        id = db.insert("carteiraEletronica", null, values);
+
+        uriReturn = ContentUris.withAppendedId(CONTENT_URI, id);
+        getContext().getContentResolver().notifyChange(uri, null);
         db.close();
+        return uriReturn;
+    }
+
+    @Override
+    public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
+        db = banco.getWritableDatabase();
+
+        db.delete("carteiraEletronica", selection, selectionArgs);
+        getContext().getContentResolver().notifyChange(uri, null);
+        db.close();
+        return 1;
+    }
+
+    @Override
+    public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
+        db = banco.getWritableDatabase();
+
+        if(db.update("carteiraEletronica",values,selection,selectionArgs) == 1){
+            getContext().getContentResolver().notifyChange(uri, null);
+            db.close();
+            return 1;
+        }
+        return 0;
     }
 
 }

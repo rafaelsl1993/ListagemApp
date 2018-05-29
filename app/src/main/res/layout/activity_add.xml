@@ -5,91 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:theme="@style/MyTheme">
+    android:theme="@style/AppTheme">
 
 
-    <EditText
+    <Spinner
         android:id="@+id/EdtSummary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minWidth="230dp"
-        app:layout_constraintBottom_toTopOf="@+id/EdtValue"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="@dimen/textSize"
+        android:layout_width="@dimen/generalWidth"
+        android:layout_height="@dimen/generalHeight"
+        android:textAlignment="center"
+        android:layout_marginStart="@dimen/generalRightLeft"
+        android:layout_marginEnd="@dimen/generalRightLeft"
+        android:layout_marginTop="@dimen/generalTop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/EdtValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:minWidth="230dp"
-        android:inputType="numberSigned|numberDecimal"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/EdtData"
+        android:layout_width="@dimen/generalWidth"
+        android:layout_height="@dimen/generalHeight"
+        android:layout_marginEnd="@dimen/generalRightLeft"
+        android:layout_marginStart="@dimen/generalRightLeft"
+        android:layout_marginTop="@dimen/generalMiddleView"
+        android:hint="@string/Value"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EdtSummary" />
+        app:layout_constraintTop_toBottomOf="@id/EdtSummary" />
+
+    <TextView
+        android:id="@+id/EdtDate"
+        android:textSize="@dimen/textSize"
+        android:layout_width="@dimen/generalWidth"
+        android:layout_height="@dimen/generalHeight"
+        android:hint="@string/Calendario"
+        android:textAlignment="center"
+        android:layout_marginStart="@dimen/generalRightLeft"
+        android:layout_marginEnd="@dimen/generalRightLeft"
+        android:layout_marginTop="@dimen/generalMiddleView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/EdtValue"
+        android:onClick="showDialog"/>
 
     <Button
         android:id="@+id/BtnAdiciona"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:width="50dp"
         android:hint="@string/Btn_Adiciona"
-        android:minWidth="230dp"
-        android:onClick="funcAdiciona"
-        android:text="Adiciona"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EdtData" />
-
-    <EditText
-        android:id="@+id/EdtData"
+        android:textSize="@dimen/textSize"
+        android:background="@drawable/buttons"
         android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="5dp"
-        android:ems="10"
-        android:inputType="date"
-        android:minWidth="230dp"
-        app:layout_constraintBottom_toTopOf="@+id/BtnAdiciona"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginStart="@dimen/generalRightLeft"
+        android:layout_marginEnd="@dimen/generalRightLeft"
+        android:layout_marginTop="@dimen/generalMiddleView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EdtValue" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="5dp"
-        android:maxWidth="230dp"
-        android:minWidth="230dp"
-        android:text="Deletar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BtnAdiciona" />
-
+        app:layout_constraintTop_toBottomOf="@id/EdtDate"
+        android:onClick="funcAdiciona"/>
 
 </android.support.constraint.ConstraintLayout>
