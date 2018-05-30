@@ -14,6 +14,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity{
@@ -24,6 +33,8 @@ public class MainActivity extends AppCompatActivity{
     private MyViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton fab;
+    private String url = "http://data.fixer.io/api/latest?access_key=d6addeca492227a4b294040e88381fab&symbols=USD,BRL";
+    private JSONObject mJson;
 
 
     @Override
@@ -40,6 +51,7 @@ public class MainActivity extends AppCompatActivity{
                 addWindow();
             }
         });
+        getCurrencyRates();
     }
 
     public void addWindow(){
@@ -73,9 +85,20 @@ public class MainActivity extends AppCompatActivity{
         //Estudar Activity Lifecycle
     }
 
-    public void funcAbreTela(View view) {
+    public void funcAbreTela(View view){
         Intent intent = new Intent(this, AddActivity.class);    //Intent, utilizado para abrir outra Activity(Tela)
-        startActivity(intent);  //Inicia a outra Activity
+        JSONObject jsonArray;
+        try {
+            jsonArray = mJson.getJSONObject("rates");
+            String usd = jsonArray.getString("USD");
+            String brl = jsonArray.getString("BRL");
+            intent.putExtra("usd", usd);
+            intent.putExtra("brl", brl);
+        }catch(JSONException msg){
+
+        }finally {
+            startActivity(intent);  //Inicia a outra Activity
+        }
     }
 
     public void adapterView(){
@@ -102,6 +125,28 @@ public class MainActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);  //inflate no menu o menu_main.xml
         return true;
+    }
+
+    public void getCurrencyRates() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        mJson = response;
+                        Toast.makeText(getBaseContext(), (R.string.ratesCurrency),Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getBaseContext(), (R.string.ratesError),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 }
 

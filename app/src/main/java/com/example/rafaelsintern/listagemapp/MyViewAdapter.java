@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -67,7 +68,7 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.MyViewHold
         mC.set(list.get(position).getYear(),list.get(position).getMonth(),list.get(position).getDay());
         holder.date.setText(DateFormat.getDateInstance().format(mC.getTime()));
 
-        holder.value.setText(String.format(Locale.getDefault(),"%.2f",list.get(position).getValue()));
+        holder.value.setText(String.format(Locale.getDefault(),"%s %.2f", NumberFormat.getCurrencyInstance().getCurrency().getCurrencyCode(),list.get(position).getValue()));
 
         if(list.get(position).getCA()) {    //Se Value positivo exibe em cor Verde(sistema RGB)
             holder.value.setTextColor(Color.parseColor("#00FF00"));

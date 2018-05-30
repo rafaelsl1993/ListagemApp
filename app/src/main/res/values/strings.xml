@@ -9,6 +9,10 @@
     <string name="Description" translatable="true">Description</string>
     <string name="Calendario" translatable="true">Calendar</string>
     <string name="Btn_Edit" translatable="true">Edit Values</string>
+    <string name="ratesCurrency" translable="true">Currency rates refreshed</string>
+    <string name="ratesError" translatable="true">Currency rates not refreshed</string>
+    <string name="success" translable="true">Success</string>
+
     <string-array name="mySpinner" translatable="true">
         <item>Payday</item>
         <item>Gas</item>

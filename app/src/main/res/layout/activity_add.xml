@@ -67,4 +67,15 @@
         app:layout_constraintTop_toBottomOf="@id/EdtDate"
         android:onClick="funcAdiciona"/>
 
+    <TextView
+        android:id="@+id/EdtCurrency"
+        android:layout_width="@dimen/generalWidth"
+        android:layout_height="95dp"
+        android:layout_marginTop="@dimen/generalMiddleView"
+        android:layout_marginEnd="@dimen/generalRightLeft"
+        android:layout_marginStart="@dimen/generalRightLeft"
+        app:layout_constraintTop_toBottomOf="@id/BtnAdiciona"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
