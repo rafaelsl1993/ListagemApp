@@ -1,5 +1,6 @@
 package com.example.rafaelsintern.listagemapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 /*Utiliza a RecyclerView.Adapter para adaptar a listagem dos itens
   no MainActivity
@@ -65,12 +67,12 @@ public class MyViewAdapter extends RecyclerView.Adapter<MyViewAdapter.MyViewHold
         mC.set(list.get(position).getYear(),list.get(position).getMonth(),list.get(position).getDay());
         holder.date.setText(DateFormat.getDateInstance().format(mC.getTime()));
 
+        holder.value.setText(String.format(Locale.getDefault(),"%.2f",list.get(position).getValue()));
+
         if(list.get(position).getCA()) {    //Se Value positivo exibe em cor Verde(sistema RGB)
-            holder.value.setText((Float.toString(list.get(position).getValue())));
             holder.value.setTextColor(Color.parseColor("#00FF00"));
         }
         else {  //Caso negativo é exibido em Vermelho e Negrito
-            holder.value.setText((Float.toString(list.get(position).getValue())));
             holder.value.setTextColor(Color.parseColor("#FF0000"));
             holder.value.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         }

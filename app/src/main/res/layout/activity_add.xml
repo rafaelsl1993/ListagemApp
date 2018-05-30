@@ -29,7 +29,7 @@
         android:layout_marginStart="@dimen/generalRightLeft"
         android:layout_marginTop="@dimen/generalMiddleView"
         android:hint="@string/Value"
-        android:inputType="number"
+        android:inputType="number|numberSigned|numberDecimal"
         android:textAlignment="center"
         android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
