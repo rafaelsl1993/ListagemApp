@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity{
     private MyViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton fab;
-    private String url = "http://data.fixer.io/api/latest?access_key=d6addeca492227a4b294040e88381fab&symbols=USD,BRL";
+    private String url = "http://data.fixer.io/api/latest?access_key=!!!CHAVEAQUI!!!&symbols=USD,BRL";
     private JSONObject mJson;
 
 
